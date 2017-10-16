@@ -1081,12 +1081,12 @@ Note: This {{DOMRect}} object is not <a spec=html>live</a>.
 enum ScrollIntoViewMode { "always", "if-hidden" };
 enum ScrollLogicalPosition { "start", "center", "end", "nearest" };
 dictionary ScrollIntoViewOptions : ScrollOptions {
-  ScrollIntoViewMode scroll = "always";
+  ScrollIntoViewMode scrollMode = "always";
   ScrollLogicalPosition block = "start";
   ScrollLogicalPosition inline = "nearest";
 };
 dictionary FocusScrollOptions : ScrollOptions {
-  ScrollIntoViewMode scroll = "if-hidden";
+  ScrollIntoViewMode scrollMode = "if-hidden";
   ScrollLogicalPosition block;
   ScrollLogicalPosition inline;
 };
@@ -1164,7 +1164,7 @@ The <dfn method for=Element caniuse=scrollintoview>scrollIntoView(<var>arg</var>
     1. Set <var>behavior</var> to the {{ScrollOptions/behavior}} dictionary member of <var>options</var>.
     1. Set <var>block</var> to the {{ScrollIntoViewOptions/block}} dictionary member of <var>options</var>.
     1. Set <var>inline</var> to the {{ScrollIntoViewOptions/inline}} dictionary member of <var>options</var>.
-    1. Set <var>scrollMode</var> to the {{ScrollIntoViewOptions/scroll}} dictionary member of <var>options</var>.
+    1. Set <var>scrollMode</var> to the {{ScrollIntoViewOptions/scrollMode}} dictionary member of <var>options</var>.
 1. Otherwise, if <var>arg</var> is false, then set <var>block</var> to "<code>end</code>".
 1. If the element does not have any associated <a>layout box</a>, then return.
 1. <a lt='scroll an element into view'>Scroll the element into view</a>
