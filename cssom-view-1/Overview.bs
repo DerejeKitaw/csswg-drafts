@@ -1078,7 +1078,7 @@ Note: This {{DOMRect}} object is not <a spec=html>live</a>.
 <h2 id=extension-to-the-element-interface>Extensions to the {{Element}} Interface</h2>
 
 <pre class=idl>
-enum ScrollIntoViewMode { "always", "if-needed" };
+enum ScrollIntoViewMode { "always", "if-hidden" };
 enum ScrollLogicalPosition { "start", "center", "end", "nearest" };
 dictionary ScrollIntoViewOptions : ScrollOptions {
   ScrollIntoViewMode scroll = "always";
@@ -1086,7 +1086,7 @@ dictionary ScrollIntoViewOptions : ScrollOptions {
   ScrollLogicalPosition inline = "nearest";
 };
 dictionary FocusScrollOptions : ScrollOptions {
-  ScrollIntoViewMode scroll = "if-needed";
+  ScrollIntoViewMode scroll = "if-hidden";
   ScrollLogicalPosition block;
   ScrollLogicalPosition inline;
 };
@@ -1335,9 +1335,9 @@ a <a>scrolling box</a> <var>scrolling box</var>, in order of innermost to outerm
 1. Let <var>scrolling box edge D</var> be the <a>ending edge</a> in the <a>inline base direction</a> of <var>scrolling box</var>, and let <var>element edge D</var> be <var>element bounding border box</var>'s edge on the same physical side as that of <var>scrolling box edge D</var>.
 1. Let <var>element width</var> be the distance between <var>element edge C</var> and <var>element edge D</var>.
 1. Let <var>scrolling box width</var> be the distance between <var>scrolling box edge C</var> and <var>scrolling box edge D</var>.
-1. If <var>scrollMode</var> is "<code>if-needed</code>", and <var>element</var> is entirely in view already, then return.
+1. If <var>scrollMode</var> is "<code>if-hidden</code>", and <var>element</var> is partially or entirely in view already, then return.
 
-        ISSUE: Define "entirely in view".
+        ISSUE: Define "partially or entirely in view".
 
 1. If <var>block</var> is undefined, set <var>block</var> to a UA-defined value.
 1. If <var>inline</var> is undefined, set <var>inline</var> to a UA-defined value.
