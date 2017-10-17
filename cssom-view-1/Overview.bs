@@ -1335,16 +1335,21 @@ a <a>scrolling box</a> <var>scrolling box</var>, in order of innermost to outerm
 1. Let <var>scrolling box edge D</var> be the <a>ending edge</a> in the <a>inline base direction</a> of <var>scrolling box</var>, and let <var>element edge D</var> be <var>element bounding border box</var>'s edge on the same physical side as that of <var>scrolling box edge D</var>.
 1. Let <var>element width</var> be the distance between <var>element edge C</var> and <var>element edge D</var>.
 1. Let <var>scrolling box width</var> be the distance between <var>scrolling box edge C</var> and <var>scrolling box edge D</var>.
-1. If <var>scrollMode</var> is "<code>if-hidden</code>", and <var>element</var> is partially or entirely in view already, then return.
-
-        ISSUE: Define "partially or entirely in view".
-
 1. If <var>block</var> is undefined, set <var>block</var> to a UA-defined value.
 1. If <var>inline</var> is undefined, set <var>inline</var> to a UA-defined value.
 
         ISSUE: Define defaults for <var>block</var> and <var>inline</var> for {{FocusScrollOptions}}.
 
-1. Let <var>position</var> be the scroll position <var>scrolling box</var> would have by following these steps:
+1. Let <var>hidden</var> be false.
+1. If <var>element edge B</var> is outside (before) <var>scrolling box edge A</var>, or
+    if <var>element edge A</var> is outside (after) <var>scrolling box edge B</var>, or
+    if <var>element edge D</var> is outside (before) <var>scrolling box edge C</var>, or
+    if <var>element edge C</var> is outside (after) <var>scrolling box edge D</var>,
+    then set <var>hidden</var> to true.
+1. Let <var>position</var> be <var>scrolling box</var>'s current scroll position.
+1. If <var>scrollMode</var> is "<code>if-hidden</code>" and <var>hidden</var> is true, or
+    if <var>scrollMode</var> is "<code>always</code>",
+    then set <var>position</var> to the scroll position <var>scrolling box</var> would have by following these steps:
 
     1. If <var>block</var> is "<code>start</code>", then align <var>element edge A</var> with <var>scrolling box edge A</var>.
     1. Otherwise, if <var>block</var> is "<code>end</code>", then align <var>element edge B</var> with <var>scrolling box edge B</var>.
